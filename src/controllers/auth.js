@@ -20,6 +20,9 @@ function genToken(username) {
 async function Login(req, res) {
     try {
         const password_db = await models.getByUsername(req.body.username)
+
+        console.log(password_db)
+
         if (password_db.length <= 0) {
             return respone(res, 200, 'Username tidak terdaftar')
         }

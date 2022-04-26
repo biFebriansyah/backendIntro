@@ -1,4 +1,4 @@
-function respone(res, status, result = '') {
+function respone(res, status, result = '', meta = '') {
     let desc = ''
 
     switch (status) {
@@ -35,6 +35,10 @@ function respone(res, status, result = '') {
         status: status,
         description: desc,
         result: isObject(result) ? [result] : result
+    }
+
+    if (meta) {
+        results.meta = meta
     }
 
     res.status(status).json(results)
