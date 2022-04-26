@@ -3,7 +3,7 @@ const models = {}
 
 models.getData = function () {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM public.products ORDER BY product_id ASC')
+        db.query('SELECT * FROM public.products')
             .then((data) => {
                 resolve(data.rows)
             })
@@ -16,12 +16,12 @@ models.getData = function () {
 
 models.addData = function ({ name, price, category }) {
     return new Promise((resolve, reject) => {
-        db.query(`INSERT INTO public.products (name, price, category) VALUES($1, $2, $3)`, [
+        db.query('INSERT INTO public.products (name, price, category) VALUES($1, $2, $3)', [
             name,
             price,
             category
         ])
-            .then((data) => {
+            .then(() => {
                 resolve('Data berhasil disimpan')
             })
             .catch((ers) => {

@@ -21,4 +21,14 @@ product.Create = async (req, res) => {
     }
 }
 
+product.Serach = async (req, res) => {
+    try {
+        const { name } = req.query
+        const data = await models.addData({ name })
+        res.send({ data })
+    } catch (error) {
+        res.send('Maaf error terjadi')
+    }
+}
+
 module.exports = product
